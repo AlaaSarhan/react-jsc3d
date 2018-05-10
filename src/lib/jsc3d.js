@@ -1026,15 +1026,8 @@ JSC3D.Viewer.prototype.loadScene = function() {
         lastSlashAt = sceneUrlNoQuery.lastIndexOf('\\');
     
     var fileName = sceneUrlNoQuery.substring(lastSlashAt + 1);
-    var lastDotAt = fileName.lastIndexOf('.');
-    if(lastDotAt == -1) {
-        if(JSC3D.console)
-            JSC3D.console.logError('Cannot get file format for the lack of file extension.');
-        return false;
-    }
-
-    var fileExtName = fileName.substring(lastDotAt + 1);
-    var loader = JSC3D.LoaderSelector.getLoader(fileExtName);
+    
+    var loader = JSC3D.LoaderSelector.getLoader('stl');
     if(!loader) {
         if(JSC3D.console)
             JSC3D.console.logError('Unsupported file format: "' + fileExtName + '".');
